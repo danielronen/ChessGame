@@ -1,5 +1,6 @@
 package com.engine.player;
 
+import com.engine.Alliance;
 import com.engine.board.Board;
 import com.engine.board.Move;
 import com.engine.pieces.King;
@@ -30,5 +31,7 @@ public abstract class Player {
     }
 
     public abstract Collection<Piece> getActivePieces();
+    public abstract Alliance getAlliance();
+    public abstract Player getOpponent();
 
 }
