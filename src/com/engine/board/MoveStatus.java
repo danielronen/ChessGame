@@ -1,4 +1,13 @@
 package com.engine.board;
 
-public class MoveStatus {
-}
+public enum MoveStatus {
+    DONE{
+        @Override
+        public boolean isDone(){
+            return false;
+        }
+    };
+
+    public abstract boolean isDone();
+
+    }
