@@ -16,13 +16,14 @@ public class Board {
 
     private final WhitePlayer whitePlayer;
     private final BlackPlayer blackPlayer;
+    private final Player currentPlayer;
 
 
     private Board(Builder builder){
         this.gameBoard = createGameBoard(builder);
         this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
         this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.BLACK);
-
+        this.currentPlayer = null;
         final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
         final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
 
@@ -48,6 +49,10 @@ public class Board {
 
     public Player blackPlayer(){
         return this.blackPlayer;
+    }
+
+    public Player currentPlayer(){
+        return this.currentPlayer;
     }
 
     public Collection<Piece> getBlackPieces(){
