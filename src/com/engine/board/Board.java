@@ -89,7 +89,7 @@ public class Board {
         for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
             tiles[i] = Tile.createTile(i, builder.boardConfig.get(i));
         }
-        return Collections.unmodifiableList(List.of(tiles));
+        return List.of(tiles);
     }
 
     public static Board createStandardBoard(){
