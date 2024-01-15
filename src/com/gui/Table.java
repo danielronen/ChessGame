@@ -38,10 +38,10 @@ public class Table {
 
     private boolean highLightLegalMoves;
 
-    private final static Dimension OUTER_FRAME_DIMENSION = new Dimension(600,600);
-    private final static Dimension BOAR_PANEL_DIMENSION = new Dimension(400,350);
+    private final static Dimension OUTER_FRAME_DIMENSION = new Dimension(800,800);
+    private final static Dimension BOARD_PANEL_DIMENSION = new Dimension(400,350);
     private final static Dimension TILE_PANEL_DIMENSION = new Dimension(10,10);
-    private final static String defaultPieceImagesPath = "art/fancy/";
+    private final static String defaultPieceImagesPath = "art/holywarriors/";
 
     private final Color lightTileColor = Color.decode("#FFFACD");
     private final Color darkTileColor = Color.decode("#55555");
@@ -106,7 +106,7 @@ public class Table {
                 this.boardTiles.add(tilePanel);
                 add(tilePanel);
             }
-            setPreferredSize(BOAR_PANEL_DIMENSION);
+            setPreferredSize(BOARD_PANEL_DIMENSION);
             validate();
         }
 
@@ -203,7 +203,10 @@ public class Table {
                     final BufferedImage image =
                             ImageIO.read(new File(defaultPieceImagesPath + board.getTile(this.tileId).getPiece().getPieceAlliance().toString().substring(0,1) +
                                     board.getTile(tileId).getPiece().toString() + ".gif"));
-                    add(new JLabel(new ImageIcon(image)));
+                    JLabel label = new JLabel(new ImageIcon(image));
+                    //label.setOpaque(true);
+                    //label.setForeground(Color.decode("#FFFFF"));
+                    add(label);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
