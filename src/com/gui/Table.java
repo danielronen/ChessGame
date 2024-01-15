@@ -43,20 +43,10 @@ public class Table {
     private JMenu createFileManu(){
         final JMenu fileMenu = new JMenu("File");
         final JMenuItem openPGN = new JMenuItem("Load PGN file");
-        openPGN.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("open up that pgn file!");
-            }
-        });
+        openPGN.addActionListener(e -> System.out.println("open up that pgn file!"));
         fileMenu.add(openPGN);
         final JMenuItem exitMenuItem = new JMenuItem("Exit");
-        exitMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        exitMenuItem.addActionListener(e -> System.exit(0));
         fileMenu.add(exitMenuItem);
         return fileMenu;
     }
