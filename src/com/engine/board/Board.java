@@ -5,6 +5,8 @@ import com.engine.pieces.*;
 import com.engine.player.BlackPlayer;
 import com.engine.player.Player;
 import com.engine.player.WhitePlayer;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 
 import java.util.*;
 
@@ -26,8 +28,9 @@ public class Board {
         final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
         final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
 
-        this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
         this.blackPlayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        System.out.println(this.whitePlayer.getPlayerKing());
         this.currentPlayer = builder.nextMoveMaker.choosePlayer(this.whitePlayer, this.blackPlayer);
 
     }
@@ -70,7 +73,7 @@ public class Board {
         for (final Piece piece : pieces ){
             legalMoves.addAll(piece.calculateLegalMoves(this));
         }
-        return Collections.unmodifiableCollection(legalMoves);
+        return ImmutableList.copyOf(legalMoves);
     }
 
     private static Collection<Piece> calculateActivePieces(final List<Tile> gameBoard,final Alliance alliance) {
@@ -83,7 +86,7 @@ public class Board {
                 }
             }
         }
-        return Collections.unmodifiableList(activePieces);
+        return ImmutableList.copyOf(activePieces);
     }
 
     public Tile getTile(final int tileCoordinate) {
@@ -140,15 +143,8 @@ public class Board {
         return builder.build();
     }
 
-    public List<Move> getAllLegalMoves() {
-        List<Move> allLegalMoves = new ArrayList<>();
-        for (Move move: this.whitePlayer.getLegalMoves()){
-            allLegalMoves.add(move);
-        }
-        for (Move move: this.blackPlayer.getLegalMoves()){
-            allLegalMoves.add(move);
-        }
-        return Collections.unmodifiableList(allLegalMoves);
+    public Iterable<Move> getAllLegalMoves() {
+        return Iterables.unmodifiableIterable(Iterables.concat(this.whitePlayer.getLegalMoves(),this.blackPlayer.getLegalMoves()));
     }
 
     public static class Builder {

@@ -1,6 +1,8 @@
 package com.engine.board;
 
 import com.engine.pieces.Piece;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 
 import java.util.Collections;
 import java.util.Map;
@@ -19,11 +21,15 @@ public abstract class Tile {
         for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
             emptyTileMap.put(i, new EmptyTile(i));
         }
-        return Collections.unmodifiableMap(emptyTileMap);
+        return ImmutableMap.copyOf(emptyTileMap);
     }
 
     public static Tile createTile(final int tileCoordinate, final Piece piece){
         return piece != null ? new OccupiedTile(tileCoordinate, piece) : EMPTY_TILES_CACHE.get(tileCoordinate);
+    }
+
+    public int getTileCoordinate(){
+        return this.tileCoordinate;
     }
 
     private Tile(final int tileCoordinate){

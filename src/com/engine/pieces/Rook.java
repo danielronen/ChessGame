@@ -5,10 +5,10 @@ import com.engine.board.Board;
 import com.engine.board.BoardUtils;
 import com.engine.board.Move;
 import com.engine.board.Tile;
+import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class Rook extends Piece{
@@ -45,7 +45,7 @@ public class Rook extends Piece{
                 }
             }
         }
-        return Collections.unmodifiableList(legalMoves);
+        return ImmutableList.copyOf(legalMoves);
     }
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset){

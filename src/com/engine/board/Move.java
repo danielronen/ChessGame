@@ -4,6 +4,8 @@ import com.engine.pieces.Pawn;
 import com.engine.pieces.Piece;
 import com.engine.pieces.Rook;
 
+import static com.engine.board.Board.*;
+
 public abstract class Move {
 
     final Board board;
@@ -64,7 +66,7 @@ public abstract class Move {
     }
 
     public Board execute() {
-        final Board.Builder builder = new Board.Builder();
+        final Builder builder = new Builder();
         for (final Piece piece : this.board.currentPlayer().getActivePieces()){
             //TODO hashcode and equals for pieces
             if(!this.movedPiece.equals(piece)){
@@ -151,7 +153,7 @@ public abstract class Move {
 
         @Override
         public Board execute(){
-            final Board.Builder builder= new Board.Builder();
+            final Builder builder= new Builder();
             for (final Piece piece: this.board.currentPlayer().getActivePieces()){
                 if (!this.movedPiece.equals(piece)){
                     builder.setPiece(piece);
@@ -194,7 +196,7 @@ public abstract class Move {
         @Override
         public Board execute(){
 
-            final Board.Builder builder = new Board.Builder();
+            final Builder builder = new Builder();
             for (final Piece piece: this.board.currentPlayer().getActivePieces()){
                 if (!this.movedPiece.equals(piece) && !this.castleRook.equals(piece)){
                     builder.setPiece(piece);
@@ -212,7 +214,7 @@ public abstract class Move {
 
     }
 
-    public static  final class KingSideCastleMove extends CastleMove{
+    public static final class KingSideCastleMove extends CastleMove{
 
         public KingSideCastleMove(final Board board, final Piece piece, final int destination,final Rook castleRook, final int castleRookStart, final int castleRookDestination) {
             super(board, piece, destination, castleRook, castleRookStart, castleRookDestination);
@@ -224,7 +226,7 @@ public abstract class Move {
         }
     }
 
-    public static  final class QueenSideCastleMove extends CastleMove{
+    public static final class QueenSideCastleMove extends CastleMove{
 
         public QueenSideCastleMove(final Board board, final Piece piece, final int destination, final Rook castleRook, final int castleRookStart, final int castleRookDestination) {
             super(board, piece, destination, castleRook, castleRookStart, castleRookDestination);

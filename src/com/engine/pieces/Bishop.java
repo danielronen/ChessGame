@@ -5,6 +5,7 @@ import com.engine.board.Board;
 import com.engine.board.BoardUtils;
 import com.engine.board.Move;
 import com.engine.board.Tile;
+import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -47,7 +48,7 @@ public class Bishop extends Piece{
                 }
             }
         }
-        return Collections.unmodifiableList(legalMoves);
+        return ImmutableList.copyOf(legalMoves);
     }
 
     @Override
