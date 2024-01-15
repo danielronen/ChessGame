@@ -57,6 +57,11 @@ public class Queen extends Piece{
         return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == 9 || candidateOffset == -7 || candidateOffset == 1);
     }
 
+    @Override
+    public Queen movePiece(final Move move) {
+        return new Queen(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
+    }
+
     public String toString(){
         return PieceType.QUEEN.toString();
     }

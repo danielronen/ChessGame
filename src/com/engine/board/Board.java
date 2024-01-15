@@ -19,16 +19,17 @@ public class Board {
     private final Player currentPlayer;
 
 
-    private Board(Builder builder){
+    private Board(final Builder builder){
         this.gameBoard = createGameBoard(builder);
         this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
         this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.BLACK);
-        this.currentPlayer = null;
         final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
         final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
 
         this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
         this.blackPlayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        this.currentPlayer = builder.nextMoveMaker.choosePlayer(this.whitePlayer, this.blackPlayer);
+
     }
 
     public String toString(){
@@ -138,10 +139,23 @@ public class Board {
         //build the board
         return builder.build();
     }
+
+    public List<Move> getAllLegalMoves() {
+        List<Move> allLegalMoves = new ArrayList<>();
+        for (Move move: this.whitePlayer.getLegalMoves()){
+            allLegalMoves.add(move);
+        }
+        for (Move move: this.blackPlayer.getLegalMoves()){
+            allLegalMoves.add(move);
+        }
+        return Collections.unmodifiableList(allLegalMoves);
+    }
+
     public static class Builder {
 
         Map<Integer, Piece> boardConfig;
         Alliance nextMoveMaker;
+        Pawn enPassantPawn;
 
         public Builder(){
             this.boardConfig = new HashMap<>();
@@ -159,6 +173,10 @@ public class Board {
 
         public Board build(){
             return new Board(this);
+        }
+
+        public void setEnPassantPawn(Pawn enPassantPawn) {
+            this.enPassantPawn = enPassantPawn;
         }
     }
 
