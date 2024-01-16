@@ -5,7 +5,7 @@ import com.engine.board.Board;
 import com.engine.board.Move;
 
 import java.util.Collection;
-import java.util.List;
+
 
 public abstract class Piece {
 

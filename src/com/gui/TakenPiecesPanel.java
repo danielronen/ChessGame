@@ -23,7 +23,7 @@ public class TakenPiecesPanel extends JPanel {
     private final JPanel southPanel;
 
     private static final Color PANEL_COLOR = Color.decode("0xFDFE6");
-    private static final Dimension TAKEN_PIECES_DIMENSION = new Dimension(40,80);
+    private static final Dimension TAKEN_PIECES_DIMENSION = new Dimension(160,400);
     private static final EtchedBorder PANEL_BORDER = new EtchedBorder(EtchedBorder.RAISED);
 
     public TakenPiecesPanel(){
@@ -85,7 +85,7 @@ public class TakenPiecesPanel extends JPanel {
         for (final Piece takenPiece : blackTakenPieces){
             try{
                 final BufferedImage image = ImageIO.read(new File("art/holywarriors/" + takenPiece.getPieceAlliance().toString().substring(0,1)
-                        +""+takenPiece.toString()+".gif"));
+                        +""+takenPiece+".gif"));
                 final ImageIcon icon = new ImageIcon(image);
                 final JLabel imageLabel = new JLabel(icon);
                 this.southPanel.add(imageLabel);

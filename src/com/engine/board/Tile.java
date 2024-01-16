@@ -1,10 +1,8 @@
 package com.engine.board;
 
 import com.engine.pieces.Piece;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.HashMap;
 
