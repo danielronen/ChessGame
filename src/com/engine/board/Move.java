@@ -106,7 +106,7 @@ public abstract class Move {
 
         @Override
         public String toString(){
-            return movedPiece.getPieceType().toString() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+            return movedPiece.getPieceType().toString() +" - "+ BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
         }
 
     }
@@ -142,6 +142,11 @@ public abstract class Move {
         @Override
         public Piece getAttackedPiece(){
             return this.attackedPiece;
+        }
+
+        @Override
+        public String toString(){
+            return this.movedPiece.getPieceType().toString() +" - "+BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
         }
     }
 
@@ -185,6 +190,11 @@ public abstract class Move {
             builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
             return builder.build();
 
+        }
+
+        @Override
+        public String toString() {
+            return "P - " + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
         }
     }
 

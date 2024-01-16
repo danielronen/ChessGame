@@ -28,7 +28,7 @@ public class TakenPiecesPanel extends JPanel {
 
     public TakenPiecesPanel(){
         super(new BorderLayout());
-        setBackground(Color.decode("PANEL_COLOR"));
+        setBackground(PANEL_COLOR);
         setBorder(PANEL_BORDER);
         this.northPanel = new JPanel(new GridLayout(8,2));
         this.southPanel = new JPanel(new GridLayout(8,2));
